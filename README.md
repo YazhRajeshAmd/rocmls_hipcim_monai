@@ -260,6 +260,7 @@ tar -xf - --strip-components=2 --wildcards \
 ---
 ## Screenshots
 <img width="2780" height="1238" alt="image" src="https://github.com/user-attachments/assets/ff06ed8b-ab56-4fd1-9e9b-22c76bca71b6" />
+<img width="2797" height="1145" alt="image" src="https://github.com/user-attachments/assets/f84df211-8a74-4f55-a505-401238c729cc" />
 
 ## Troubleshooting
 
