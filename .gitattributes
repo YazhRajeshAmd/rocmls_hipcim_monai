@@ -2,3 +2,6 @@
 *.tif filter=lfs diff=lfs merge=lfs -text
 *.tiff filter=lfs diff=lfs merge=lfs -text
 *.pth filter=lfs diff=lfs merge=lfs -text
+demo/custom_trained/spleen_ct_segmentation/models/model_spleen_ct_segmentation_v1.pt filter=lfs diff=lfs merge=lfs -text
+demo/custom_trained/pathology_tumor_detection/models/model.pt filter=lfs diff=lfs merge=lfs -text
+demo/custom_trained/pathology_tumor_detection/models/model.pth filter=lfs diff=lfs merge=lfs -text
