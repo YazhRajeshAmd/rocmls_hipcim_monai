@@ -1,0 +1,128 @@
+#!/bin/bash
+# Simplified script to download test data only
+# Copyright © Advanced Micro Devices, Inc., or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#     http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+init_globals() {
+    if [ "$0" != "/bin/bash" ]; then
+        SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+        export RUN_SCRIPT_FILE="$(readlink -f "$0")"
+    else
+        export RUN_SCRIPT_FILE="$(readlink -f "${BASH_SOURCE[0]}")"
+    fi
+
+    export TOP=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+}
+
+# Utility functions for colored output
+c_str() {
+    local old_color=39
+    local old_attr=0
+    local color=39
+    local attr=0
+    local text=""
+    for i in "$@"; do
+        case "$i" in
+            r|R) color=31 ;;
+            g|G) color=32 ;;
+            y|Y) color=33 ;;
+            b|B) color=34 ;;
+            p|P) color=35 ;;
+            c|C) color=36 ;;
+            w|W) color=37 ;;
+            z|Z) color=0 ;;
+        esac
+        case "$i" in
+            l|L|R|G|Y|B|P|C|W) attr=1 ;;
+            n|N|r|g|y|b|p|c|w) attr=0 ;;
+            z|Z) attr=0 ;;
+            *) text="${text}$i"
+        esac
+        if [ ${old_color} -ne ${color} ] || [ ${old_attr} -ne ${attr} ]; then
+            text="${text}\033[${attr};${color}m"
+            old_color=$color
+            old_attr=$attr
+        fi
+    done
+    /bin/echo -en "$text"
+}
+
+c_echo() {
+    local old_opt="$(shopt -op xtrace)"
+    set +x
+    local text="$(c_str "$@")"
+    /bin/echo -e "$text\033[0m"
+    eval "${old_opt}"
+}
+
+run_command() {
+    local status=0
+    local cmd="$*"
+
+    c_echo B "$(date -u '+%Y-%m-%d %H:%M:%S') " W "\$ " G "${cmd}"
+
+    [ "$(echo -n "$@")" = "" ] && return 1
+
+    "$@"
+    status=$?
+
+    return $status
+}
+
+download_testdata_desc() { echo 'Download test data from Docker Hub' ; }
+download_testdata() {
+    c_echo W "Downloading test data..."
+    run_command mkdir -p "${TOP}/use-cases/hipcim/input"
+    if [ ! -e "${TOP}/use-cases/hipcim/input/image.tif" ]; then
+        run_command rm -rf "${TOP}/use-cases/hipcim/input"
+        id=$(docker create gigony/svs-testdata:little-big)
+        run_command docker cp $id:/input "${TOP}/use-cases/hipcim"
+        run_command docker rm -v $id
+        c_echo G "Test data is downloaded to '${TOP}/use-cases/hipcim/input'!"
+    else
+        c_echo G "Test data already exists at '${TOP}/use-cases/hipcim/input'!"
+    fi
+}
+
+print_usage() {
+    echo "USAGE: $0 [command]"
+    echo ""
+    echo "Available commands:"
+    echo "    download_testdata  Download test data from Docker Hub"
+    echo "    help              Show this help message"
+}
+
+main() {
+    local cmd="$1"
+
+    case "$cmd" in
+        download_testdata)
+            download_testdata
+            ;;
+        help|--help|-h)
+            print_usage
+            ;;
+        '')
+            print_usage
+            ;;
+        *)
+            echo "Unknown command: $cmd"
+            print_usage
+            exit 1
+            ;;
+    esac
+}
+
+init_globals
+
+if [ -n "${SCRIPT_DIR}" ]; then
+    main "$@"
+fi

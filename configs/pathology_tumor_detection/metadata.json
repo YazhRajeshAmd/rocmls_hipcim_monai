@@ -1,0 +1,27 @@
+{
+  "name": "pathology_tumor_detection_resnet18",
+  "description": "ResNet18-based binary classifier for tumor detection in pathology patches.",
+  "version": "0.1.0",
+  "labels": {
+    "0": "normal",
+    "1": "tumor"
+  },
+  "network": "TorchVisionFCModel(resnet18)",
+  "timestamp": "2025-09-10",
+  "dependencies": {
+    "monai": ">=1.0.0",
+    "pytorch": ">=2.0",
+    "torchvision": ">=0.15"
+  },
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Your Name",
+      "email": "you@example.com"
+    }
+  ],
+  "references": [
+    "https://monai.io/model-zoo.html#pathology_tumor_detection",
+    "https://pytorch.org/vision/stable/models/generated/torchvision.models.resnet18.html"
+  ]
+}
