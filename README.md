@@ -1,11 +1,10 @@
 # AMD ROCm-LS Demo Application
 
-<p align="center">
+<p align="right">
   <img src="assets/amd-logo.png" alt="AMD Logo" width="200"/>
 </p>
 
-**Accelerated Imaging & AI Workflows for Life Sciences**  
-**Featuring hipCIM and MONAI on AMD Instinct™ GPUs**
+**Accelerated Imaging & AI Workflows for Life Sciences - Featuring hipCIM and MONAI on AMD Instinct™ GPUs**
 
 ---
 
