@@ -324,7 +324,6 @@ demo/data/spleen_ct_segmentation/*.nii.gz
 demo/output/bundle_spleen*
 use-cases/hipcim/input_tif/
 use-cases/hipcim/static_images/
-demo/custom_trained/
 *.pth
 *.pt
 *.tif
@@ -336,5 +335,5 @@ demo/custom_trained/
 *.tiff
 use-cases/hipcim/input_tif/
 use-cases/hipcim/static_images/
-demo/custom_trained/
 trained_models/
+sample_images/tumor_001.tif
