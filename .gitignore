@@ -322,7 +322,6 @@ use-cases/monai/spleen-ct-segmentation/outputs
 use-cases/monai/sample/profiler_logs/
 demo/data/spleen_ct_segmentation/*.nii.gz
 demo/output/bundle_spleen*
-use-cases/hipcim/input_tif/
 use-cases/hipcim/static_images/
 *.pth
 *.pt
@@ -333,7 +332,8 @@ use-cases/hipcim/static_images/
 *.pt
 *.tif
 *.tiff
-use-cases/hipcim/input_tif/
 use-cases/hipcim/static_images/
 trained_models/
 sample_images/tumor_001.tif
+use-cases/hipcim/input/image2.tif
+use-cases/hipcim/input/image2.tif

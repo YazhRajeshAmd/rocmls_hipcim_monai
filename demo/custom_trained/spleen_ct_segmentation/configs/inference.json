@@ -1,0 +1,6 @@
+{
+  "network": "UNet",
+  "preprocessing": "<monai.transforms.compose.Compose object at 0x7c1c4fd2d210>",
+  "postprocessing": "<monai.transforms.compose.Compose object at 0x7c1c4fd2c850>",
+  "inferer": "<monai.inferers.inferer.SlidingWindowInferer object at 0x7c1c4fd2c8e0>"
+}
