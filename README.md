@@ -281,16 +281,6 @@ tar -xf - --strip-components=2 --wildcards \
 
 ---
 
-## Contributors
-
-- Soumitra Chatterjee
-- Anik Chaudhuri
-- Chandan Sharma
-- Prateek Chokse
-- Yazhini Rajesh
-
----
-
 ## License
 
 ```
